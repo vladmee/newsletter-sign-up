@@ -1,3 +1,10 @@
 export default function Home() {
-  return <main>Hello world</main>;
+  return (
+    <main>
+      <ul role="list">
+        <li>Hello</li>
+        <li>World</li>
+      </ul>
+    </main>
+  );
 }
