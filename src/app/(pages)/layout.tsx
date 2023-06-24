@@ -1,4 +1,3 @@
-import './globals.css';
 import { Roboto } from 'next/font/google';
 
 import './globals.scss';
