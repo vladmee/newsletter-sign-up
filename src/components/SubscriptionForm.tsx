@@ -4,8 +4,13 @@ import { useState } from 'react';
 
 import styles from './subscription-form.module.scss';
 
+interface Data {
+  email: string;
+}
+
 function SubscriptionForm() {
   const [email, setEmail] = useState('');
+  const [data, setData] = useState<Data | null>(null);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -28,11 +33,15 @@ function SubscriptionForm() {
 
     const result = await response.json();
 
-    alert(`Is this your email: ${result.email}`);
+    setData(result);
   };
 
+  if (data) {
+    return <div className={styles['container']}>Thank you, {data.email}!</div>;
+  }
+
   return (
-    <form onSubmit={handleSubmit} className={styles['subscription-form']}>
+    <form onSubmit={handleSubmit} className={styles['container']}>
       <label htmlFor="email">Email address</label>
       <input
         type="email"
