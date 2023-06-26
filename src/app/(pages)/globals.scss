@@ -1,5 +1,6 @@
 @import 'styles/reset.scss';
 @import 'styles/utilities.scss';
+@import 'styles/mixins.scss';
 
 :root {
   --color-dark: hsl(234, 29%, 20%);
@@ -7,65 +8,39 @@
   --color-grey: hsl(231, 7%, 60%);
   --color-white: hsl(0, 0%, 100%);
   --color-primary: hsl(4, 100%, 67%);
+  --color-primary-alt: hsl(344, 98%, 69%);
+  --color-error: hsl(4, 100%, 50%);
+  --color-error-20: rgba(255, 34, 12, 0.2);
   --size-step-0: clamp(1rem, calc(0.96rem + 0.22vw), 1.13rem);
-  --size-step-1: clamp(1.25rem, calc(1.16rem + 0.43vw), 1.5rem);
-  --size-step-2: clamp(1.56rem, calc(1.41rem + 0.76vw), 2rem);
-  --size-step-3: clamp(1.95rem, calc(1.71rem + 1.24vw), 2.66rem);
   --size-step-4: clamp(2.44rem, calc(2.05rem + 1.93vw), 3.55rem);
+  --size-label: clamp(0.6rem, calc(0.76rem + 0.18vw), 0.8rem);
+  --breakpoint-desktop: 64em;
 }
 
 body {
   background: var(--color-charcoal);
   color: var(--color-dark);
-  padding: 2em;
   font-family: var(--font-roboto);
   font-size: var(--size-step-0);
   line-height: 1.7;
   font-weight: 400;
 }
 
-a {
-  color: currentColor;
-  text-decoration-color: var(--color-primary);
-  text-decoration-thickness: 0.3ex;
-  text-underline-offset: 0.3ex;
-}
-
-h1,
-h2,
-h3 {
+h2 {
   font-weight: 700;
   line-height: 1.1;
 }
 
-h1 {
+h2 {
   font-size: var(--size-step-4);
   max-width: 20ch;
 }
 
-h2,
-h3 {
-  max-width: 28ch;
-}
-
-h2 {
-  font-size: var(--size-step-3);
-}
-
-h3 {
-  font-size: var(--size-step-2);
-}
-
-:is(h1, h2, h3) {
-  --flow-space: 1.5em;
-}
-
-:is(h1, h2, h3) + * {
-  --flow-space: 0.5em;
-}
-
 main {
   min-height: 100vh;
-  display: grid;
-  place-content: center;
+
+  @include desktop {
+    display: grid;
+    place-content: center;
+  }
 }
