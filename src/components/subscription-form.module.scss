@@ -1,5 +1,6 @@
 @import 'styles/mixins.scss';
 
+// Common display style
 .container-wrapper {
   display: flex;
   flex-direction: column;
@@ -12,6 +13,7 @@
   }
 }
 
+// Holding all components
 .container {
   padding: 2em;
   position: relative;
@@ -30,6 +32,7 @@
     );
   }
 
+  // Success view
   &.success {
     @include desktop {
       min-width: auto;
@@ -37,6 +40,8 @@
     }
   }
 }
+
+// Mobile image lives outside the container (treated individually)
 .img-mobile {
   position: relative;
   width: 100%;
@@ -51,6 +56,7 @@
   }
 }
 
+// Main cols
 .info-col,
 .success-col {
   display: flex;
@@ -58,7 +64,6 @@
   width: 100%;
   height: auto;
 }
-
 .info-col {
   flex-grow: 1;
 
@@ -67,7 +72,6 @@
     width: 60%;
   }
 }
-
 .img-col {
   display: none;
   @include desktop {
@@ -80,6 +84,7 @@
   }
 }
 
+// Plain content (no images, forms etc)
 .content {
   height: 100%;
   display: flex;
@@ -93,7 +98,6 @@
   flex-direction: column;
   justify-content: center;
 }
-
 .list {
   padding: 0;
 
@@ -115,12 +119,14 @@
   }
 }
 
+// Form
 .subscription-form {
   display: flex;
   flex-direction: column;
   gap: calc(var(--size-label) / 2);
 }
 
+// Input label
 .label-wrapper {
   display: flex;
   flex-direction: row;
@@ -137,6 +143,7 @@
   color: var(--color-error);
 }
 
+// Input
 .input-form {
   margin-bottom: 1em;
   border: 2px solid var(--color-grey);
@@ -165,6 +172,8 @@
     }
   }
 }
+
+// Button
 .btn-form {
   width: 100%;
   border: 1px solid var(--color-dark);

@@ -1,7 +1,3 @@
 .flow > * + * {
   margin-block-start: var(--flow-space, 1em);
 }
-
-.paragraphs > * {
-  max-width: 65ch;
-}

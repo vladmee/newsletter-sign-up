@@ -4,37 +4,41 @@ import { useState } from 'react';
 import Image from 'next/image';
 
 import styles from './subscription-form.module.scss';
-import { spawn } from 'child_process';
 
+// Type for the received data
 interface Data {
   email: string;
 }
 
 function SubscriptionForm() {
+  // Inputs handling
   const [email, setEmail] = useState('');
+  const [emailError, setEmailError] = useState<string | null>(null);
+  // Received data
   const [data, setData] = useState<Data | null>(null);
-  const [error, setError] = useState<string | null>(null);
 
+  // Form submit
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
+    // Email validation
     if (!email) {
-      setError('Email cannot be empty');
+      setEmailError('Email cannot be empty');
       return;
     }
     const emailPattern = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
     if (!emailPattern.test(email)) {
-      setError('Please enter a valid email address');
+      setEmailError('Please enter a valid email address');
       return;
     }
 
+    // Send data
     const data = {
       email: email,
     };
-
     const JSONdata = JSON.stringify(data);
-    const endpoint = '/api/form';
 
+    const endpoint = '/api/form';
     const options = {
       method: 'POST',
       headers: {
@@ -44,21 +48,38 @@ function SubscriptionForm() {
     };
 
     const response = await fetch(endpoint, options);
-
     const result = await response.json();
-
     setData(result);
+
+    // Receive response (server validation)
+    try {
+      const response = await fetch(endpoint, options);
+
+      if (!response.ok) {
+        setEmailError(`HTTP error! status: ${response.status}`);
+        return;
+      }
+
+      const result = await response.json();
+      setData(result);
+    } catch (error) {
+      setEmailError('Something went wrong');
+      return;
+    }
   };
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setError(null);
+  // Handle inputs change
+  const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setEmailError(null);
     setEmail(event.target.value);
   };
 
+  // Dismiss action after success
   const handleDismiss = () => {
     setData(null);
   };
 
+  // Success state (if data received successfully)
   if (data && data.email) {
     return (
       <div className={`${styles['container-wrapper']}`}>
@@ -118,8 +139,8 @@ function SubscriptionForm() {
                 <label htmlFor="email" className={styles['label-form']}>
                   Email address
                 </label>
-                {error && (
-                  <span className={styles['label-error']}>{error}</span>
+                {emailError && (
+                  <span className={styles['label-error']}>{emailError}</span>
                 )}
               </div>
               <input
@@ -128,15 +149,15 @@ function SubscriptionForm() {
                 name="email"
                 placeholder="email@company.com"
                 value={email}
-                onChange={handleChange}
+                onChange={handleEmailChange}
                 className={`${styles['input-form']} ${
-                  error ? styles['has-error'] : ''
+                  emailError ? styles['has-error'] : ''
                 }`}
               />
               <button
                 type="submit"
                 className={styles['btn-form']}
-                disabled={!!error}
+                disabled={!!emailError}
               >
                 Subscribe to monthly newsletter
               </button>
