@@ -63,8 +63,8 @@ function SubscriptionForm() {
     return (
       <div className={`${styles['container-wrapper']}`}>
         <div className={`${styles['container']} ${styles['success']}`}>
-          <div className={`${styles['success-col']} flow`}>
-            <div className={`${styles['text-success']} flow`}>
+          <div className={`${styles['content']} flow`}>
+            <div className={`${styles['main-content']} flow`}>
               <Image
                 src="/icon-success.svg"
                 alt="Thanks for subscribing!"
@@ -78,11 +78,9 @@ function SubscriptionForm() {
                 button inside to confirm your subscription.
               </p>
             </div>
-            <div className={styles['btn-success']}>
-              <button onClick={handleDismiss} className={styles['btn-form']}>
-                Dismiss message
-              </button>
-            </div>
+            <button onClick={handleDismiss} className={styles['btn-form']}>
+              Dismiss message
+            </button>
           </div>
         </div>
       </div>
@@ -101,43 +99,49 @@ function SubscriptionForm() {
       </div>
       <div className={`${styles['container']}`}>
         <div className={`${styles['info-col']} flow`}>
-          {/* Starting with h2 thinking that it could be used as a component inside a page that would most likely have an h1 already  */}
-          <h2>Stay updated!</h2>
-          <p>Join 60,000+ product managers receiving monthly updates on:</p>
-          <ul role="list" className={`${styles['list']} flow`}>
-            <li>Product discovery and building what matters</li>
-            <li>Measuring to ensure updates are a success</li>
-            <li>And much morel</li>
-          </ul>
-          <form
-            onSubmit={handleSubmit}
-            className={`${styles['subscription-form']}`}
-          >
-            <div className={styles['label-wrapper']}>
-              <label htmlFor="email" className={styles['label-form']}>
-                Email address
-              </label>
-              {error && <span className={styles['label-error']}>{error}</span>}
+          <div className={`${styles['content']} flow`}>
+            <div className={`${styles['main-content']} flow`}>
+              <h2>Stay updated!</h2>{' '}
+              {/* can be changed to H1 if it's the main component on the page */}
+              <p>Join 60,000+ product managers receiving monthly updates on:</p>
+              <ul role="list" className={`${styles['list']} flow`}>
+                <li>Product discovery and building what matters</li>
+                <li>Measuring to ensure updates are a success</li>
+                <li>And much morel</li>
+              </ul>
             </div>
-            <input
-              type="text"
-              id="email"
-              name="email"
-              placeholder="email@company.com"
-              value={email}
-              onChange={handleChange}
-              className={`${styles['input-form']} ${
-                error ? styles['has-error'] : ''
-              }`}
-            />
-            <button
-              type="submit"
-              className={styles['btn-form']}
-              disabled={!!error}
+            <form
+              onSubmit={handleSubmit}
+              className={`${styles['subscription-form']}`}
             >
-              Subscribe to monthly newsletter
-            </button>
-          </form>
+              <div className={styles['label-wrapper']}>
+                <label htmlFor="email" className={styles['label-form']}>
+                  Email address
+                </label>
+                {error && (
+                  <span className={styles['label-error']}>{error}</span>
+                )}
+              </div>
+              <input
+                type="text"
+                id="email"
+                name="email"
+                placeholder="email@company.com"
+                value={email}
+                onChange={handleChange}
+                className={`${styles['input-form']} ${
+                  error ? styles['has-error'] : ''
+                }`}
+              />
+              <button
+                type="submit"
+                className={styles['btn-form']}
+                disabled={!!error}
+              >
+                Subscribe to monthly newsletter
+              </button>
+            </form>
+          </div>
         </div>
         <div className={styles['img-col']}>
           <Image

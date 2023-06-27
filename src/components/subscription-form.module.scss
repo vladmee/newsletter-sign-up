@@ -60,7 +60,10 @@
 }
 
 .info-col {
+  flex-grow: 1;
+
   @include desktop {
+    flex-grow: unset;
     width: 60%;
   }
 }
@@ -77,14 +80,14 @@
   }
 }
 
-.success-col {
+.content {
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   flex-grow: 1;
 }
-.text-success {
+.main-content {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
