@@ -44,9 +44,9 @@
 
 ### What I learned
 
-**Subscription Form component built with React and housed within a Next.js 13 environment. **
+**Subscription Form component built with React and housed within a Next.js 13 environment.**
 
-The component is **self-contained** and handles** view rendering**,** input changes**, and **error handling** using the `useState` hook and the form's default `onSubmit` action. _There are no fancy gimmicks here, just straightforward, effective code._
+The component is **self-contained** and handles **view rendering**, **input changes**, and **error handling** using the `useState` hook and the form's default `onSubmit` action. _There are no fancy gimmicks here, just straightforward, effective code._
 
 The entirety of the component's code can be found under the [/components](./src/components/) directory. Although this component does depend on Next.js, **the form itself is otherwise pure React**.
 
