@@ -51,7 +51,7 @@ The font for this project is imported via Next.js's implementation of Google Fon
 - Custom SCSS code
 - Fluid design (flexbox, grid, rem, clamp, best practices)
 - All-in-one component
-- API for sending data & receiving a real response
+- API for sending data & receiving a real response.
 
 ### Continued development
 
